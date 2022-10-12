@@ -17,15 +17,15 @@ class Usuario{
 
     addMascota(animal){
         /*Nombre de mascotas agregados*/
-        this.mascotas.push(`${animal}`);
-        constructorUsuarios.countMascotas(); /* constructorUsuarios.addMascota("animal") */
+        this.mascotas.push(`${animal}`); /* constructorUsuarios.addMascota("animal") */
+        constructorUsuarios.countMascotas(); 
         
     };
 
     countMascotas(){
         /*Cantidad de mascotas*/
         for(let i = 0; i<this.mascotas.length; i++){
-            console.log("Tienes " + i + 1 + " mascota/s")
+            console.log("Tienes " + (i + 1)  + " mascota/s")
         }
     };
     
