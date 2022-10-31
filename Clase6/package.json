@@ -1,0 +1,17 @@
+{
+  "name": "clase6",
+  "version": "1.0.0",
+  "description": "Creando servidor web",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Barrios Augusto",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
