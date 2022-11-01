@@ -13,6 +13,7 @@ class Contenedor{
             object.id = modificId
             const pusheo = content.push(object)
             const add = await fs.promises.writeFile(`./${this.ruta}`, JSON.stringify(content, null, 2))
+            await fs.promises.writeFile(`./productos.txt`, JSON.stringify(content, null, 2))
         }catch(error){
             console.log(error)
         }
@@ -31,9 +32,9 @@ class Contenedor{
     async getAll(){
         try{
         const content = JSON.parse( await fs.promises.readFile(`./${this.ruta}`, 'utf-8', ))
+        const contenteTxt = await fs.promises.readFile(`./productos.txt`, 'utf-8', )
+        console.log(contenteTxt)
         console.log(content)
-        console.log("------------------------------------------")
-        console.log("Aqui tienes todos los productos disponibles")
     }catch(error){
         console.log(error, "no funciono")
     }}
@@ -43,6 +44,7 @@ class Contenedor{
             const content = JSON.parse( await fs.promises.readFile(`./${this.ruta}`, 'utf-8', ))
             const buscador = content.filter(buscador => buscador.id !== id)
             await fs.promises.writeFile(`./${this.ruta}`, JSON.stringify(buscador, null, 2))
+            await fs.promises.writeFile(`./productos.txt`, JSON.stringify(content, null, 2))
             console.log(`Producto eliminado numero ${id}`)
         }catch(error){
             console.log(error, "no funciono")
@@ -51,8 +53,8 @@ class Contenedor{
 
     async deleteAll(){
         try{
-            const content = JSON.parse( await fs.promises.readFile(`./${this.ruta}`, 'utf-8', ))
             await fs.promises.writeFile(`./${this.ruta}`, JSON.stringify([], null, 2))
+            await fs.promises.writeFile(`./productos.txt`, JSON.stringify('' , null, 2))
             console.log(`Productos eliminados`)
         }catch(error){
             console.log(error, "no funciono")
@@ -64,9 +66,11 @@ class Contenedor{
 const ruta = new Contenedor(`array.json`)
 
 let objInfo = {id:0, titulo:"", descripcion: ""}
-    
-ruta.getAll();
-/* ruta.getById();
+
+
+
+/* ruta.getAll();  
+ruta.getById();
 ruta.deleteAll();
 ruta.deleteById();
 ruta.save(objInfo) */
