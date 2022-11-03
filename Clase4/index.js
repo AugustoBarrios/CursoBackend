@@ -1,4 +1,4 @@
-const fs = require('fs')
+/* const fs = require('fs')
 
 class Contenedor{
     constructor(ruta){
@@ -69,13 +69,13 @@ let objInfo = {id:0, titulo:"", descripcion: ""}
 
 
 
-/* ruta.getAll();  
+ruta.getAll();  
 ruta.getById();
 ruta.deleteAll();
 ruta.deleteById();
 ruta.save(objInfo) */
 
-
+//-----------------------------------------------------------------------------------------------
 
 /* const animales = document.getElementById("mascota");  
 const cargar = document.getElementById("cargar"); */

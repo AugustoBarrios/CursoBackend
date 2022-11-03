@@ -1,5 +1,6 @@
-/* const fs = require('fs')
+const fs = require('fs')
 const express = require('express')
+const { Console } = require('console')
 
 class Contenedor{
     constructor(ruta){
@@ -23,10 +24,8 @@ class Contenedor{
      getById(Id){
         try{
             const content = JSON.parse(  fs.readFileSync(`./${this.ruta}`, 'utf-8', ))
-            Id = parseInt(Math.random() * content.length + 1);
-            console.log(Id)
-            const buscador = content.filter(buscador => buscador.id === Id)
-            return JSON.stringify(buscador, null, 2 )
+            const buscador = content.filter(buscador => buscador.id === JSON.parse(Id))
+            return JSON.stringify(buscador)
         }catch(error){
             console.log(error, "no funciono")
         }
@@ -42,13 +41,14 @@ class Contenedor{
         console.log(error, "no funciono")
     }}
 
-    async deleteById(id){
+     deleteById(Id){
         try{
-            const content = JSON.parse( await fs.promises.readFile(`./${this.ruta}`, 'utf-8', ))
-            const buscador = content.filter(buscador => buscador.id !== id)
-            await fs.promises.writeFile(`./${this.ruta}`, JSON.stringify(buscador, null, 2))
-            await fs.promises.writeFile(`./productos.txt`, JSON.stringify(content, null, 2))
-            console.log(`Producto eliminado numero ${id}`)
+            const content = JSON.parse(  fs.promises.readFile(`./${this.ruta}`, 'utf-8', ))
+            const buscador = content.filter(buscador => buscador.id !== JSON.parse(Id))
+            console.log("Tu id es:", Id)
+             fs.promises.writeFile(`./${this.ruta}`, JSON.stringify(buscador, null, 2))
+             fs.promises.writeFile(`./productos.txt`, JSON.stringify(content, null, 2))
+            console.log(`Producto eliminado numero ${Id}`)
         }catch(error){
             console.log(error, "no funciono")
         }
@@ -69,15 +69,15 @@ class Contenedor{
 const ruta = new Contenedor(`array.json`)
 let objInfo = {id:0, titulo:"", descripcion: ""}
 
-ruta.getAll();  
+/* ruta.getAll();  
 ruta.getById();
 ruta.deleteAll();
 ruta.deleteById();
-ruta.save(objInfo) */
+ruta.save(objInfo)  */
 
 // NO EJECUTAR ruta.save(objInfo) CON NODEMON ACTIVADO
 
-/* 
+
 const app = express();
 const port = 8080; 
 
@@ -85,10 +85,17 @@ const server = app.listen(port, ()=>{
     console.log(`Servidor corriendo en http://localhost:${port}`);
 })
 
-app.get('/productos', (req, res)=>{
+app.get('/api/productos', (req, res)=>{
     res.send(`Lo has logrado ${ruta.getAll()}`)
 })
 
-app.get('/productosRandom', (req, res)=>{
-    res.send(`Lo has logrado ${ruta.getById(2)}`)
+app.get(`/api/productos/:id`, (req, res)=>{
+    let IdRequest = req.params.id;
+    res.send(`Lo has logrado ${ruta.getById(IdRequest)}`)
+})
+
+/* app.delete(`/api/productos/:id`, (req, res)=>{
+    let IdRequest = req.params.id;
+    res.send(`Has eliminado este el producto ${ruta.deleteById(IdRequest)}`)
 }) */
+
