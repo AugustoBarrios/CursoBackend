@@ -25,6 +25,17 @@ class Contenedor {
         }
     }
 
+    updateUsers(Id, User){
+        try{
+            const content = JSON.parse( fs.readFileSync(`./${this.ruta}`, 'utf-8',))
+            const buscadorParse  = content.findIndex(buscador => buscador.id == JSON.parse(Id))
+            content[buscadorParse] = User
+            fs.writeFileSync(`./${this.ruta}`, JSON.stringify(borrador, null, 2))
+            
+
+        }catch{}
+    }
+
     getById(Id) {
         try {
             const content = JSON.parse(fs.readFileSync(`./${this.ruta}`, 'utf-8',))
@@ -74,7 +85,6 @@ class Contenedor {
 }
 
 const ruta = new Contenedor(`array.json`)
-/* let objInfo = { id: 0, titulo: "", descripcion: "" } */
 
 const app = express();
 app.use(express.static(__dirname + '/public')); //Aqui
@@ -100,7 +110,7 @@ router.post(`/post`, (req, res)=>{
     const { body } = req;
     console.log(body)
     ruta.save(body)
-    res.json({Mensaje: "producto agregado"})
+    res.json({Mensaje: "producto agregado"}) //HAY QUE EJECUTAR PRIMERO ESTA URL EN POSTMAN Y LUEGO FUNCIONA PROFE NOSE SI ASI ESTA BIEN
 
 })
 
@@ -108,6 +118,13 @@ router.delete(`/delete/:id`, (req, res) => {
     let IdRequest = req.params.id;
     const product = ruta.deleteById(IdRequest);
     res.json({Mensaje:`Eliminaste con exito el usuario/producto con el id: ${IdRequest} `})
+})
+
+router.put(`/userModify/:id`, (req, res) => {
+    let IdRequest = req.params.id;
+    const { body } = req;
+    console.log(body)
+    res.json({Mensaje:`Producto actualizado ${ruta.updateUsers(IdRequest, body)}`})
 })
 
 
