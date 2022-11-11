@@ -29,8 +29,8 @@ class Contenedor {
         try{
             const content = JSON.parse( fs.readFileSync(`./${this.ruta}`, 'utf-8',))
             const buscadorParse  = content.findIndex(buscador => buscador.id == JSON.parse(Id))
-            content[buscadorParse] = User
-            fs.writeFileSync(`./${this.ruta}`, JSON.stringify(borrador, null, 2))
+            content.splice(buscadorParse, 1, {id: User.id, titulo: User.titulo, descripcion: User.descripcion})
+            fs.writeFileSync(`./${this.ruta}`, JSON.stringify(content, null, 2))
             
 
         }catch{}
@@ -123,7 +123,7 @@ router.delete(`/delete/:id`, (req, res) => {
 router.put(`/userModify/:id`, (req, res) => {
     let IdRequest = req.params.id;
     const { body } = req;
-    console.log(body)
+    console.log( "Esto es el body actual", body)
     res.json({Mensaje:`Producto actualizado ${ruta.updateUsers(IdRequest, body)}`})
 })
 
