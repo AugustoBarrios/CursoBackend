@@ -1,8 +1,7 @@
 const fs = require('fs')
 const express = require('express')
-const { stringify } = require('querystring')
-/* const { Console } = require('console') */
-const { Router } = express
+//const { stringify } = require('querystring')
+//const { Router } = express
 
 
 class Contenedor {
@@ -87,13 +86,8 @@ class Contenedor {
 const ruta = new Contenedor(`array.json`)
 
 const app = express();
-/* app.use(express.static(__dirname + '/public')); 
-app.use(express.urlencoded({extended: true})); */
-
-const router = Router();
-router.use(express.json());
-
 const port = 8080;
+
 const contentAllUse = JSON.parse(fs.readFileSync(`./array.json`, 'utf-8'))
 
 app.set('views', 'views');
@@ -112,7 +106,3 @@ app.post(`/productos`, (req, res)=>{
     console.log(prueba)
     res.redirect('/');
 })
-
-/* app.use("/api", router) */
-
-// POSTMAN (https://web.postman.co/workspace/My-Workspace~d6b47eb3-02dd-4cc6-8244-b85bd27af5f9/request/create?requestId=5a26a350-5e40-4509-a2ab-c5e2d5887d5f)
