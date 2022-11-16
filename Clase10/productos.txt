@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "titulo": "Lapiz",
+    "precio": 125
+  },
+  {
+    "id": 2,
+    "titulo": "Regla",
+    "precio": 220
+  },
+  {
+    "id": 3,
+    "titulo": "Calculadora",
+    "precio": 575
+  }
+]

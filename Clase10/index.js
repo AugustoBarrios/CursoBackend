@@ -1,7 +1,7 @@
-/* const fs = require('fs')
+const fs = require('fs')
 const express = require('express')
 const { stringify } = require('querystring')
-const { Console } = require('console')
+/* const { Console } = require('console') */
 const { Router } = express
 
 
@@ -29,7 +29,7 @@ class Contenedor {
         try{
             const content = JSON.parse( fs.readFileSync(`./${this.ruta}`, 'utf-8',))
             const buscadorParse  = content.findIndex(buscador => buscador.id == JSON.parse(Id))
-            content.splice(buscadorParse, 1, {id: User.id, titulo: User.titulo, descripcion: User.descripcion})
+            content.splice(buscadorParse, 1, {id: User.id, titulo: User.titulo, precio: User.precio,})
             fs.writeFileSync(`./${this.ruta}`, JSON.stringify(content, null, 2))
             
 
@@ -88,46 +88,31 @@ const ruta = new Contenedor(`array.json`)
 
 const app = express();
 app.use(express.static(__dirname + '/public')); 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
+
 const router = Router();
 router.use(express.json());
+
 const port = 8080;
+const contentAllUse = JSON.parse(fs.readFileSync(`./array.json`, 'utf-8'))
+
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 const server = app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 })
 
-router.get("/users", (req, res) => {
-    res.send(`Lo has logrado ${ruta.getAll()}`)
+app.get("/", (req, res) => {
+    res.render('inicio', {contentAllUse})
 })
 
-router.get(`/user/:id`, (req, res) => {
-    let IdRequest = req.params.id;
-    res.send(`Lo has logrado ${ruta.getById(IdRequest)}`)
+app.post(`/productos`, (req, res)=>{
+    const prueba = ruta.save(req.body)
+    console.log(prueba)
+    res.redirect('/');
 })
 
-router.post(`/post`, (req, res)=>{
-    const { body } = req;
-    console.log(body)
-    ruta.save(body)
-    res.json({Mensaje: "producto agregado"})
-
-})
-
-router.delete(`/delete/:id`, (req, res) => {
-    let IdRequest = req.params.id;
-    const product = ruta.deleteById(IdRequest);
-    res.json({Mensaje:`Eliminaste con exito el usuario/producto con el id: ${IdRequest} `})
-})
-
-router.put(`/userModify/:id`, (req, res) => {
-    let IdRequest = req.params.id;
-    const { body } = req;
-    console.log( "Esto es el body actual", body)
-    res.json({Mensaje:`Producto actualizado ${ruta.updateUsers(IdRequest, body)}`})
-})
-
-
-app.use("/api", router) */
+/* app.use("/api", router) */
 
 // POSTMAN (https://web.postman.co/workspace/My-Workspace~d6b47eb3-02dd-4cc6-8244-b85bd27af5f9/request/create?requestId=5a26a350-5e40-4509-a2ab-c5e2d5887d5f)
