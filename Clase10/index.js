@@ -87,8 +87,8 @@ class Contenedor {
 const ruta = new Contenedor(`array.json`)
 
 const app = express();
-app.use(express.static(__dirname + '/public')); 
-app.use(express.urlencoded({extended: true}));
+/* app.use(express.static(__dirname + '/public')); 
+app.use(express.urlencoded({extended: true})); */
 
 const router = Router();
 router.use(express.json());
@@ -96,7 +96,7 @@ router.use(express.json());
 const port = 8080;
 const contentAllUse = JSON.parse(fs.readFileSync(`./array.json`, 'utf-8'))
 
-app.set('views', './views');
+app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 const server = app.listen(port, () => {
