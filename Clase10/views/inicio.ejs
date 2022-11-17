@@ -14,24 +14,24 @@
         <div>
             <form action="/productos" method="post">
                 <div>
-                    <div>
+                    <label class="tituloForm">
                         Titulo
-                    </div>
+                    </label>
                     <input type="text" placeholder="Titulo" name="titulo">
                 </div>
                 <div>
-                    <div>
+                    <label class="tituloForm">
                         Precio
-                    </div>
+                    </label>
                     <input type="text" placeholder="Precio" name="precio">
                 </div>
                 <button>Enviar Datos</button>
             </form>
         </div>
-        <!-- <div>
+        <div>
             <h1>Historial</h1>
-            <% if(contentAllUse.length > 0){ %>  //Hola profe, esta parte de aca me presento problemas porque me sale un error que dice
-            <div>                                //"No se encuentra la etiqueta de cierre de "<%"."  
+            <% if(contentAllUse.length > 0){ %>  
+            <div>                                
                 <table>
                     <tr>
                         <th>Nombre</th>
@@ -50,7 +50,7 @@
             <%}else{&>
                 <div><h4>No hay productos</h4></div>
                 <%};%>
-        </div> -->
+        </div> 
     </div>
 </body>
 </html>
