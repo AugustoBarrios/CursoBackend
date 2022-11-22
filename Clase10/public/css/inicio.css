@@ -1,0 +1,142 @@
+body{
+    background-color: #313131;
+}
+/*------------------------------ General -----------------------------*/
+
+.contendorFormulario{
+    justify-content: center;
+}
+
+
+.tituloFormulario{
+    text-align: center;
+    color: white;
+}
+
+.contendorInputTitulo{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.labelTitulo{
+    color: white;
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.inputTitulo{
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    color: white;
+    border: #03af4e solid 3px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.contendorInputPrecio{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.labelPrecio{
+    color: white;
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.inputPrecio{
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    color: white;
+    border: #03af4e solid 3px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.contendorInputImagen{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.labelImagen{
+    color: white;
+    font-size: 20px;
+    padding-right: 15px;
+}
+
+.inputImagen{
+    width: 157px;
+}
+
+.boton{
+    margin-top: 15px;
+    margin-left: 47%;
+    width: 200px;
+    color: white;
+    border: #03af4e solid 3px;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 1s;
+}
+
+.boton:hover{
+    background-color: #03af4e;
+    box-shadow: 0 0 25px #03af4e;
+}
+/* ------------------------------------------- Formulario-------------------------------------- */
+
+.contenedorHistorial{
+    margin-top: 25px;
+   text-align: center;
+}
+
+.tituloHistorial{
+    color: white;
+    text-align: center;
+}
+
+.contenedorTablaConProductos{
+    margin-left: 30%;
+    margin-right: 30%;
+    border: white solid 3px;
+}
+
+.tabla{
+    width: 800px;
+}
+
+.tablaImagen{ 
+    color: white;
+    width: 400px;
+    font-size: 25px;
+}
+
+.tablaTitulo{
+    color: white;
+    width: 200px;
+    font-size: 25px;
+}
+
+.tablaPrecio{
+    color: white;
+    width: 200px;
+    font-size: 25px;
+}
+
+.imagenRender{
+    width: 300px;
+}
+
+.tablaTituloRender{
+    color: white;
+    font-size: 25px;
+}
+
+.tablaPrecioRender{
+    color: white;
+    font-size: 25px;
+}
+
+/* --------------------------------------Historial---------------------------------------------- */

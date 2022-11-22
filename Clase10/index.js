@@ -1,5 +1,6 @@
 const fs = require('fs')
 const express = require('express')
+const multer = require('multer')
 //const { stringify } = require('querystring')
 //const { Router } = express
 
@@ -9,14 +10,14 @@ class Contenedor {
         this.ruta = ruta
     }
 
-     save(object) {
+     save(object, file) {
         try {
             const content = JSON.parse( fs.readFileSync(`./${this.ruta}`, 'utf-8',))
             const count = content.length
             const modificId = content[count - 1].id + 1
             object.id = modificId
+            object.imagen = '/uploads/' + file;
             const pusheo = content.push(object)
-            console.log(pusheo)
             const add =  fs.writeFileSync(`./${this.ruta}`, JSON.stringify(content, null, 2))
              fs.writeFileSync(`./productos.txt`, JSON.stringify(content, null, 2))
         } catch (error) {
@@ -87,24 +88,39 @@ const ruta = new Contenedor(`array.json`)
 
 const app = express();
 const port = 8080;
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
-const contentAllUse = JSON.parse(fs.readFileSync(`./array.json`, 'utf-8'))
-
-app.set('views', './views');
-app.set('view engine', 'ejs');
 
 const server = app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 })
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(__dirname + '/public'));
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
+const contentAllUse = JSON.parse(fs.readFileSync(`./array.json`, 'utf-8'))
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, 'public/uploads')
+    },
+    filename: (req, file, cb) =>{
+        cb(null, file.originalname)
+    }
+});
+
+const upload = multer({ storage: storage});
+
 app.get("/", (req, res) => {
     res.render('inicio', {contentAllUse})
 })
 
-app.post(`/productos`, (req, res)=>{
-    const prueba = ruta.save(req.body)
-    console.log(prueba)
-    res.redirect('/');
+
+app.post(`/productos`, upload.single('imagen'), (req, res)=>{
+    const foto = req.file.originalname
+    ruta.save(req.body, foto)
+    console.log(foto)
+    res.redirect('/')
 })

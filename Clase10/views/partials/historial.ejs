@@ -1,0 +1,25 @@
+<div class="contenedorHistorial">
+    <h2 class="tituloHistorial">Historial</h2>
+    <div class="contenedorTabla">
+        <% if(contentAllUse.length > 0){ %>  
+        <div class="contenedorTablaConProductos">                                
+            <table class="tabla">
+                <tr>
+                    <th class="tablaImagen">Imagen</th>
+                    <th class="tablaTitulo">Titulo</th>
+                    <th class="tablaPrecio">Precio</th>
+                </tr>
+                <% for (const producto of contentAllUse) { %>
+                <tr>
+                    <td class="tablaImagenRender"><img class="imagenRender" src=" <%= producto.imagen %> " alt=""></td>
+                    <td class="tablaTituloRender"><%= producto.titulo %></td>
+                    <td class="tablaPrecioRender"><%= producto.precio %></td>
+                </tr>
+            <% }; %>
+            </table>
+        </div>
+        <% }else{ %>
+            <div><h4>No hay productos</h4></div>
+            <% }; %>
+    </div> 
+</div>
