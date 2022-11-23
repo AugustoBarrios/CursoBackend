@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "imagen": "/uploads/lapiz.jpg",
+    "titulo": "Lapiz",
+    "precio": 125
+  },
+  {
+    "id": 2,
+    "imagen": "/uploads/regla.jpg",
+    "titulo": "Regla",
+    "precio": 220
+  },
+  {
+    "id": 3,
+    "imagen": "/uploads/calculadora.jpg",
+    "titulo": "Calculadora",
+    "precio": 575
+  }
+]
