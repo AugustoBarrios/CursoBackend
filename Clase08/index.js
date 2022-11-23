@@ -1,4 +1,4 @@
-/* const fs = require('fs')
+const fs = require('fs')
 const express = require('express')
 const { stringify } = require('querystring')
 const { Console } = require('console')
@@ -128,6 +128,6 @@ router.put(`/userModify/:id`, (req, res) => {
 })
 
 
-app.use("/api", router) */
+app.use("/api", router)
 
 // POSTMAN (https://web.postman.co/workspace/My-Workspace~d6b47eb3-02dd-4cc6-8244-b85bd27af5f9/request/create?requestId=5a26a350-5e40-4509-a2ab-c5e2d5887d5f)
