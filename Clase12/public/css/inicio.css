@@ -181,8 +181,10 @@ body{
     background-color: #03af4e;
 }
 
-.contenedorChat{}
+.user{ 
+    color: #03af4e ;
+}
 
-.userName{}
-
-.mensajeEmitido{}
+.mensajeEmitido{
+    color:white;
+}

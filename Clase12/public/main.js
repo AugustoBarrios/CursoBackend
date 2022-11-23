@@ -14,9 +14,10 @@ const nuevoMensaje = () =>{
 
 function render(datos) {
     const html = datos.map((elem, index) => {
+      console.log(elem)
       return (`
-        <div class="contenedorChat>
-          <strong class="userName">${elem.nombre}</strong>:
+        <div class="contenedorChat">
+          <strong class="user">${elem.nombre}:</strong>
           <em class="mensajeEmitido">${elem.mensaje}</em>
         </div>
       `);
